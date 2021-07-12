@@ -8,6 +8,7 @@ import androidx.gridlayout.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     // 0->O , 1->X, 2-> empty
@@ -55,8 +56,27 @@ public class MainActivity extends AppCompatActivity {
                     winnerTextView.setVisibility(View.VISIBLE);
                 }
             }
+
+            //draw
+            int count = 0;
+            for(int i=1; i<gameState.length; i++) {
+                if (gameState[i] == 2)
+                    count++;
+            }
+            if(count == 0 && IsGameActive){
+                IsGameActive = false;
+                Button playAgainButton = findViewById(R.id.playAgainButton);
+                TextView winnerTextView = findViewById(R.id.winnerTextView);
+                winnerTextView.setText("DRAW");
+                playAgainButton.setVisibility(View.VISIBLE);
+                winnerTextView.setVisibility(View.VISIBLE);
+            }
+
+
         }
     }
+
+
 
     public void playAgain(View view){
         Button playAgainButton = (Button)findViewById(R.id.playAgainButton);
